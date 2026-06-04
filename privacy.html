@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — DriveSentinel</title>
+<meta name="description" content="DriveSentinel Privacy Policy. How user data is handled, including Google API Services User Data Policy Limited Use compliance.">
+<style>
+  :root {
+    --navy: #1A2744;
+    --red: #E24B4A;
+    --blue: #185FA5;
+    --border: #E5E3DC;
+    --bg: #F7F6F2;
+    --text: #1A2744;
+    --muted: #6E6B66;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.65;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 22px; }
+  header.site {
+    background: var(--navy);
+    color: white;
+    padding: 18px 0;
+    border-bottom: 4px solid var(--red);
+  }
+  header.site .container {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  header.site .brand {
+    font-weight: 700; font-size: 19px; letter-spacing: 0.3px;
+    color: white;
+  }
+  header.site nav a {
+    color: rgba(255,255,255,0.78);
+    margin-left: 18px; font-size: 14px;
+  }
+  header.site nav a:hover { color: white; }
+  article {
+    padding: 50px 0 60px;
+  }
+  article h1 {
+    margin: 0 0 8px; font-size: 32px;
+  }
+  .meta { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+  article h2 {
+    margin: 38px 0 10px; font-size: 20px; color: var(--navy);
+    padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+  article h3 { margin: 22px 0 8px; font-size: 16px; }
+  article p, article li { font-size: 15px; }
+  article ul { padding-left: 22px; }
+  article ul li { margin-bottom: 6px; }
+  .limited-use {
+    background: #FFFCEF;
+    border: 1px solid #E0CC73;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 14px 0;
+  }
+  footer.site {
+    padding: 30px 0;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer.site .container {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer.site nav a {
+    color: var(--muted); margin-right: 18px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container">
+    <a href="/" style="color:white;"><div class="brand">🛡 DriveSentinel</div></a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:gpswaraich@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<article>
+<div class="container">
+
+<h1>Privacy Policy</h1>
+<div class="meta">Effective date: 2026-06-04 · Last updated: 2026-06-04</div>
+
+<p>DriveSentinel (“the App,” “we,” “us,” “our”) is a Google Workspace add-on
+operated by an individual developer (“Operator”) whose contact email is
+<a href="mailto:gpswaraich@gmail.com">gpswaraich@gmail.com</a>. This Privacy
+Policy explains what information DriveSentinel handles and how.</p>
+
+<p>This policy is written to comply with the Google API Services User Data
+Policy, including the Limited Use requirements.</p>
+
+<h2>1. Who we are</h2>
+<p>DriveSentinel is a sidebar add-on for Google Drive that helps an
+individual user manage who has access to the Google Drive files they own.
+The Operator is the sole controller of the add-on. There is no separate
+corporate entity, no employees, and no shared infrastructure.</p>
+
+<h2>2. What information DriveSentinel accesses</h2>
+<p>When you install and use DriveSentinel, the add-on may access the
+following information under your direction:</p>
+<ul>
+  <li><strong>Your basic Google account email</strong>, used to display
+  which account you are signed in as.</li>
+  <li><strong>Metadata of Google Drive files and folders you own</strong>:
+  file name, owner, last-updated date, and the list of people you have
+  shared each item with (their email, role, and external/internal status).
+  This is read in real time to render the audit, to perform revocations,
+  and to schedule revocations.</li>
+  <li><strong>Files shared with you</strong>, when you explicitly invoke
+  the “Backup Shared Files” feature. In that case, the add-on copies those
+  files into a new folder in your own Google Drive on your behalf.</li>
+  <li><strong>Outbound notification emails sent on your behalf</strong> to
+  recipients you choose when you opt into the “send warning email” option
+  for scheduled revocations.</li>
+  <li><strong>Lightweight local app state</strong>, stored privately to
+  your Google account via the Apps Script <code>PropertiesService</code>:
+  the list of contacts (“People”) you save inside the add-on, and the
+  queue of scheduled revocation jobs you have created.</li>
+</ul>
+<p>DriveSentinel does <strong>not</strong> access, read, or transmit the
+content of any Google Drive document, spreadsheet, presentation, or other
+file. Only metadata and permission lists are accessed for the listed
+features. The single exception is the “Backup Shared Files” feature, which
+uses Google's <code>makeCopy</code> API to copy a file from your
+shared-with-me area into your own Drive; the file content is never
+transmitted outside of Google's own infrastructure.</p>
+
+<h2>3. How the information is used</h2>
+<p>DriveSentinel uses the accessed information solely to:</p>
+<ul>
+  <li>Display the current state of who has access to your Drive files
+  (the <strong>Audit</strong> feature).</li>
+  <li>Remove specified people's access to your files when you instruct it
+  (the <strong>Revoke</strong> feature).</li>
+  <li>Schedule future revocations and execute them on the date you set
+  (the <strong>Smart Revoke</strong> feature).</li>
+  <li>Copy your shared-with-me files into your own Drive
+  (the <strong>Backup</strong> feature).</li>
+  <li>Optionally send a notification email to recipients you specify,
+  warning them of an upcoming revocation date.</li>
+</ul>
+<p>All processing happens inside Google's Apps Script runtime under your
+own Google account's authorization. <strong>No information is sent to the
+Operator's servers; the Operator does not operate any servers.</strong></p>
+
+<h2>4. How the information is shared</h2>
+<p>DriveSentinel <strong>does not transfer, sell, lend, or share</strong>
+any of your data with any third party, including the Operator. The only
+outbound communication the add-on can produce is the optional notification
+email you explicitly opt into, sent via Google's MailApp service to
+recipients you yourself specify.</p>
+
+<h2>5. Google API Services User Data Policy — Limited Use</h2>
+<div class="limited-use">
+<p>DriveSentinel's use and transfer to any other app of information
+received from Google APIs will adhere to the <strong>Google API Services
+User Data Policy</strong>, including the <strong>Limited Use</strong>
+requirements.</p>
+</div>
+<p>Specifically:</p>
+<ul>
+  <li>We only use access to read or modify the data the user expressly
+  asks us to.</li>
+  <li>We do not use the data for serving advertisements.</li>
+  <li>We do not transfer the data except as necessary to provide or
+  improve the user-facing features the user invoked. In practice this
+  means: no transfer occurs at all, because all processing is in
+  Apps Script under the user's own authorization.</li>
+  <li>Humans (including the Operator) do not read user data, except (a)
+  when the user explicitly requests support and shares specific data for
+  that support request, (b) for security reasons such as investigating
+  abuse, or (c) to comply with applicable law.</li>
+</ul>
+
+<h2>6. Data retention</h2>
+<p>DriveSentinel does not retain any of your data on Operator-controlled
+systems because no such systems exist. The only data persisted by the
+add-on is stored inside Google's own <code>PropertiesService</code> keyed
+to your own Google account:</p>
+<ul>
+  <li>Your saved “People” list (names and emails you grouped yourself).</li>
+  <li>Your scheduled revocation queue (target email, revoke date, file IDs).</li>
+</ul>
+<p>You can delete this stored state at any time by uninstalling the add-on
+from your Google account, or by deleting individual entries from inside
+the add-on UI.</p>
+
+<h2>7. Your rights</h2>
+<p>You can at any time:</p>
+<ul>
+  <li><strong>Revoke</strong> DriveSentinel's access to your Google account
+  via <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
+  <li><strong>Uninstall</strong> the add-on via Google Drive → Extensions
+  menu, or via the Workspace Marketplace add-on management page.</li>
+  <li><strong>Delete</strong> your saved People list and any scheduled
+  jobs from inside the add-on UI.</li>
+  <li><strong>Contact</strong> the Operator at
+  <a href="mailto:gpswaraich@gmail.com">gpswaraich@gmail.com</a> with
+  questions about your data.</li>
+</ul>
+<p>If you reside in the EEA, UK, California, or another jurisdiction that
+grants rights of access, correction, deletion, or portability over personal
+data, you may exercise those rights by emailing the Operator at the
+address above.</p>
+
+<h2>8. Children</h2>
+<p>DriveSentinel is not directed at children under 13 (or under 16 in the
+EEA). The Operator does not knowingly collect personal information from
+children.</p>
+
+<h2>9. Security</h2>
+<p>The Operator does not operate servers and does not store user data
+outside of Google's own infrastructure. All add-on logic executes inside
+Google Apps Script under your own Google account credentials. The
+Operator therefore relies on Google's security controls for stored data.
+The Operator is responsible for maintaining the integrity of the add-on
+source code, which is published only through the Google Workspace
+Marketplace and is not modifiable by third parties.</p>
+
+<h2>10. Changes to this policy</h2>
+<p>If this policy materially changes, the Operator will update the “Last
+updated” date above and, where appropriate, notify users via the add-on's
+homepage or via the email associated with their Google account.</p>
+
+<h2>11. Contact</h2>
+<p>Operator contact:
+<a href="mailto:gpswaraich@gmail.com">gpswaraich@gmail.com</a></p>
+<p>For DSAR-style requests (access / correction / deletion), email the
+Operator at the address above with the subject line
+“DriveSentinel Privacy Request.”</p>
+
+</div>
+</article>
+
+<footer class="site">
+  <div class="container">
+    <div>© 2026 DriveSentinel — operated by gpswaraich@gmail.com</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:gpswaraich@gmail.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DriveSentinel — Take back your Google Drive</title>
+<meta name="description" content="DriveSentinel is a Google Drive sidebar add-on for bulk-revoking access, auditing who can see your files, and backing up shared Drives.">
+<style>
+  :root {
+    --navy: #1A2744;
+    --red: #E24B4A;
+    --blue: #185FA5;
+    --green: #3B6D11;
+    --border: #E5E3DC;
+    --bg: #F7F6F2;
+    --text: #1A2744;
+    --muted: #6E6B66;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.55;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .container { max-width: 880px; margin: 0 auto; padding: 0 22px; }
+  header.site {
+    background: var(--navy);
+    color: white;
+    padding: 18px 0;
+    border-bottom: 4px solid var(--red);
+  }
+  header.site .container {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  header.site .brand {
+    font-weight: 700; font-size: 19px; letter-spacing: 0.3px;
+    color: white;
+  }
+  header.site nav a {
+    color: rgba(255,255,255,0.78);
+    margin-left: 18px; font-size: 14px;
+  }
+  header.site nav a:hover { color: white; }
+  .hero {
+    padding: 70px 0 50px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 44px; line-height: 1.15; margin: 0 0 18px;
+    letter-spacing: -0.5px;
+  }
+  .hero p.lead {
+    font-size: 18px; max-width: 620px; margin: 0 auto 28px;
+    color: var(--muted);
+  }
+  .btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 8px;
+    background: var(--red);
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .btn:hover { background: #c83d3c; text-decoration: none; }
+  .btn-ghost {
+    background: transparent; color: var(--navy);
+    border: 1px solid var(--border); margin-left: 8px;
+  }
+  .btn-ghost:hover { background: white; }
+  section.features {
+    padding: 50px 0;
+    background: white;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  section.features h2 {
+    text-align: center; font-size: 28px; margin: 0 0 36px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 20px;
+  }
+  .card h3 {
+    margin: 0 0 10px; font-size: 18px;
+  }
+  .card p {
+    margin: 0; color: var(--muted); font-size: 14px;
+  }
+  .emoji {
+    font-size: 24px; display: block; margin-bottom: 6px;
+  }
+  section.how {
+    padding: 60px 0;
+  }
+  section.how h2 {
+    text-align: center; font-size: 28px; margin: 0 0 30px;
+  }
+  ol.steps {
+    counter-reset: step; list-style: none; padding: 0;
+    max-width: 640px; margin: 0 auto;
+  }
+  ol.steps li {
+    counter-increment: step;
+    padding: 14px 18px 14px 60px;
+    position: relative;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute; left: 16px; top: 14px;
+    width: 30px; height: 30px;
+    background: var(--navy); color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+  }
+  section.privacy-cta {
+    background: var(--navy);
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+  }
+  section.privacy-cta h2 { margin: 0 0 12px; font-size: 24px; color: white; }
+  section.privacy-cta p { max-width: 580px; margin: 0 auto 18px; color: rgba(255,255,255,0.85); }
+  section.privacy-cta a { color: white; text-decoration: underline; }
+  footer.site {
+    padding: 30px 0;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer.site .container {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer.site nav a {
+    color: var(--muted); margin-right: 18px;
+  }
+  footer.site nav a:hover { color: var(--navy); }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container">
+    <div class="brand">🛡 DriveSentinel</div>
+    <nav>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:gpswaraich@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Take back your Google Drive.</h1>
+    <p class="lead">
+      Bulk-revoke access, audit who can see your files, and back up everything
+      shared with you — from a sidebar inside Google Drive.
+    </p>
+    <a class="btn" href="mailto:gpswaraich@gmail.com?subject=DriveSentinel%20early%20access">Get early access</a>
+    <a class="btn btn-ghost" href="/privacy">How we handle your data</a>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <h2>Three jobs Google Drive doesn't do.</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="emoji">🚫</span>
+        <h3>Bulk Revoke</h3>
+        <p>Paste a list of emails (or a whole domain). DriveSentinel removes
+        their access from every file you own — in seconds, with a
+        per-recipient report.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">⏰</span>
+        <h3>Smart Revoke</h3>
+        <p>Schedule access removal for a future date. Idle files get revoked
+        immediately; active files are queued, with an optional warning email
+        sent to the recipient.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">📊</span>
+        <h3>Audit &amp; Backup</h3>
+        <p>See exactly who has access to your files, sorted by file count.
+        Export the audit to a Sheet. One-click backup of everything shared
+        with you into your own Drive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="container">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><strong>Install from the Google Workspace Marketplace.</strong>
+      Grants only Drive sharing-permission access — never the content of your
+      files.</li>
+      <li><strong>Use the sidebar in Google Drive.</strong> Three tabs:
+      Revoke, Backup, Audit.</li>
+      <li><strong>Everything runs in Apps Script under your own account.</strong>
+      The developer doesn't operate any servers and never sees your data.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="privacy-cta">
+  <div class="container">
+    <h2>Privacy is the product.</h2>
+    <p>
+      DriveSentinel never reads the content of your files — only sharing
+      metadata. No servers. No analytics. No data transfer. All processing
+      happens inside Google Apps Script under your own Google account.
+    </p>
+    <p>
+      <a href="/privacy">Read the full privacy policy</a>
+    </p>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container">
+    <div>© 2026 DriveSentinel — operated by gpswaraich@gmail.com</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:gpswaraich@gmail.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
