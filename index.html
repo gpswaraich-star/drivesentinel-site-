@@ -1,165 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DriveSentinel — Take back your Google Drive</title>
-<meta name="description" content="DriveSentinel is a Google Drive sidebar add-on for bulk-revoking access, auditing who can see your files, and backing up shared Drives.">
-<style>
-  :root {
-    --navy: #1A2744;
-    --red: #E24B4A;
-    --blue: #185FA5;
-    --green: #3B6D11;
-    --border: #E5E3DC;
-    --bg: #F7F6F2;
-    --text: #1A2744;
-    --muted: #6E6B66;
-  }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0; padding: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    color: var(--text);
-    background: var(--bg);
-    line-height: 1.55;
-  }
-  a { color: var(--blue); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .container { max-width: 880px; margin: 0 auto; padding: 0 22px; }
-  header.site {
-    background: var(--navy);
-    color: white;
-    padding: 18px 0;
-    border-bottom: 4px solid var(--red);
-  }
-  header.site .container {
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 12px;
-  }
-  header.site .brand {
-    font-weight: 700; font-size: 19px; letter-spacing: 0.3px;
-    color: white;
-  }
-  header.site nav a {
-    color: rgba(255,255,255,0.78);
-    margin-left: 18px; font-size: 14px;
-  }
-  header.site nav a:hover { color: white; }
-  .hero {
-    padding: 70px 0 50px;
-    text-align: center;
-  }
-  .hero h1 {
-    font-size: 44px; line-height: 1.15; margin: 0 0 18px;
-    letter-spacing: -0.5px;
-  }
-  .hero p.lead {
-    font-size: 18px; max-width: 620px; margin: 0 auto 28px;
-    color: var(--muted);
-  }
-  .btn {
-    display: inline-block;
-    padding: 12px 22px;
-    border-radius: 8px;
-    background: var(--red);
-    color: white;
-    font-weight: 600;
-    font-size: 15px;
-  }
-  .btn:hover { background: #c83d3c; text-decoration: none; }
-  .btn-ghost {
-    background: transparent; color: var(--navy);
-    border: 1px solid var(--border); margin-left: 8px;
-  }
-  .btn-ghost:hover { background: white; }
-  section.features {
-    padding: 50px 0;
-    background: white;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  section.features h2 {
-    text-align: center; font-size: 28px; margin: 0 0 36px;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-  }
-  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 22px 20px;
-  }
-  .card h3 {
-    margin: 0 0 10px; font-size: 18px;
-  }
-  .card p {
-    margin: 0; color: var(--muted); font-size: 14px;
-  }
-  .emoji {
-    font-size: 24px; display: block; margin-bottom: 6px;
-  }
-  section.how {
-    padding: 60px 0;
-  }
-  section.how h2 {
-    text-align: center; font-size: 28px; margin: 0 0 30px;
-  }
-  ol.steps {
-    counter-reset: step; list-style: none; padding: 0;
-    max-width: 640px; margin: 0 auto;
-  }
-  ol.steps li {
-    counter-increment: step;
-    padding: 14px 18px 14px 60px;
-    position: relative;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    margin-bottom: 12px;
-  }
-  ol.steps li::before {
-    content: counter(step);
-    position: absolute; left: 16px; top: 14px;
-    width: 30px; height: 30px;
-    background: var(--navy); color: white;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 14px;
-  }
-  section.privacy-cta {
-    background: var(--navy);
-    color: white;
-    padding: 50px 0;
-    text-align: center;
-  }
-  section.privacy-cta h2 { margin: 0 0 12px; font-size: 24px; color: white; }
-  section.privacy-cta p { max-width: 580px; margin: 0 auto 18px; color: rgba(255,255,255,0.85); }
-  section.privacy-cta a { color: white; text-decoration: underline; }
-  footer.site {
-    padding: 30px 0;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 13px;
-  }
-  footer.site .container {
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-  }
-  footer.site nav a {
-    color: var(--muted); margin-right: 18px;
-  }
-  footer.site nav a:hover { color: var(--navy); }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DriveSentinel is a Google Drive sidebar add-on for bulk-revoking access, auditing who can see your files, and backing up shared Drives.">
+  <title>DriveSentinel — Take back your Google Drive</title>
+  <style>
+    :root {
+      --navy: #1E3A8A;
+      --accent: #2563EB;
+      --accent-dark: #1D4ED8;
+      --blue-light: #EFF6FF;
+      --border: #BFDBFE;
+      --bg: #EFF6FF;
+      --text: #1E3A8A;
+      --muted: #64748B;
+      --card-bg: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.55;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 880px; margin: 0 auto; padding: 0 22px; }
+
+    /* ── Header ──────────────────────────────────────────── */
+    header.site {
+      background: var(--navy);
+      color: white;
+      padding: 16px 0;
+      border-bottom: 4px solid var(--accent);
+    }
+    header.site .container {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    header.site .brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    header.site .brand svg { flex-shrink: 0; }
+    header.site .brand-text {
+      font-size: 19px; font-weight: 700; letter-spacing: 0.2px;
+      color: white; line-height: 1.1;
+    }
+    header.site .brand-text span { color: #93C5FD; font-weight: 400; }
+    header.site nav a {
+      color: rgba(255,255,255,0.78);
+      margin-left: 18px; font-size: 14px;
+    }
+    header.site nav a:hover { color: white; }
+
+    /* ── Hero ────────────────────────────────────────────── */
+    .hero {
+      padding: 72px 0 56px;
+      text-align: center;
+      background: linear-gradient(160deg, #EFF6FF 0%, #DBEAFE 100%);
+    }
+    .hero h1 {
+      font-size: 44px; line-height: 1.15; margin: 0 0 18px;
+      letter-spacing: -0.5px; color: var(--navy);
+    }
+    .hero p.lead {
+      font-size: 18px; max-width: 620px; margin: 0 auto 30px;
+      color: var(--muted);
+    }
+
+    /* ── Buttons ─────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.15s;
+    }
+    .btn:hover { background: var(--accent-dark); text-decoration: none; color: white; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      margin-left: 10px;
+    }
+    .btn-ghost:hover { background: var(--accent); color: white; }
+
+    /* ── Features ────────────────────────────────────────── */
+    section.features {
+      padding: 60px 0;
+      background: white;
+    }
+    section.features h2 {
+      text-align: center; margin: 0 0 36px;
+      font-size: 28px; color: var(--navy);
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--blue-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+    .card .icon { font-size: 28px; margin-bottom: 12px; }
+    .card h3 { margin: 0 0 10px; font-size: 17px; color: var(--navy); }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+
+    /* ── How it works ────────────────────────────────────── */
+    section.how {
+      padding: 60px 0;
+      background: var(--blue-light);
+    }
+    section.how h2 {
+      text-align: center; margin: 0 0 32px;
+      font-size: 28px; color: var(--navy);
+    }
+    ol.steps {
+      list-style: none; margin: 0; padding: 0;
+      counter-reset: step;
+      max-width: 640px; margin: 0 auto;
+    }
+    ol.steps li {
+      counter-increment: step;
+      padding: 18px 18px 18px 64px;
+      position: relative;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    ol.steps li strong { color: var(--navy); }
+    ol.steps li::before {
+      content: counter(step);
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      width: 32px; height: 32px;
+      background: var(--accent); color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+    }
+
+    /* ── Privacy CTA ─────────────────────────────────────── */
+    section.privacy-cta {
+      background: var(--navy);
+      color: white;
+      padding: 56px 0;
+      text-align: center;
+    }
+    section.privacy-cta h2 { margin: 0 0 14px; font-size: 26px; color: white; }
+    section.privacy-cta p { max-width: 580px; margin: 0 auto 14px; color: rgba(255,255,255,0.85); font-size: 16px; }
+    section.privacy-cta a { color: #93C5FD; text-decoration: underline; }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      background: white;
+    }
+    footer.site .container {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    footer.site nav a { color: var(--muted); margin-left: 16px; }
+    footer.site nav a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 30px; }
+      .btn-ghost { margin-left: 0; margin-top: 10px; }
+      footer.site .container { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
 
 <header class="site">
   <div class="container">
-    <div class="brand">🛡 DriveSentinel</div>
+    <a href="/" class="brand">
+      <svg width="38" height="42" viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M19 1L37 7.5V22Q37 34 19 40Q1 34 1 22V7.5Z" fill="#2563EB"/>
+        <path d="M19 10L13 18H17V27H21V18H25Z" fill="white"/>
+        <rect x="8" y="27" width="23" height="10" rx="2.5" fill="white"/>
+        <line x1="11" y1="30.5" x2="27" y2="30.5" stroke="#BFDBFE" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="11" y1="33.5" x2="23" y2="33.5" stroke="#BFDBFE" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="brand-text">
+        <span>Drive</span>Sentinel
+      </div>
+    </a>
     <nav>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
@@ -183,27 +223,21 @@
 <section class="features">
   <div class="container">
     <h2>Three jobs Google Drive doesn't do.</h2>
-    <div class="grid">
+    <div class="cards">
       <div class="card">
-        <span class="emoji">🚫</span>
+        <div class="icon">🚫</div>
         <h3>Bulk Revoke</h3>
-        <p>Paste a list of emails (or a whole domain). DriveSentinel removes
-        their access from every file you own — in seconds, with a
-        per-recipient report.</p>
+        <p>Paste a list of emails (or a whole domain). DriveSentinel removes their access from every file you own — in seconds, with a per-recipient report.</p>
       </div>
       <div class="card">
-        <span class="emoji">⏰</span>
+        <div class="icon">⏰</div>
         <h3>Smart Revoke</h3>
-        <p>Schedule access removal for a future date. Idle files get revoked
-        immediately; active files are queued, with an optional warning email
-        sent to the recipient.</p>
+        <p>Schedule access removal for a future date. Idle files get revoked immediately; active files are queued, with an optional warning email sent to the recipient.</p>
       </div>
       <div class="card">
-        <span class="emoji">📊</span>
+        <div class="icon">📊</div>
         <h3>Audit &amp; Backup</h3>
-        <p>See exactly who has access to your files, sorted by file count.
-        Export the audit to a Sheet. One-click backup of everything shared
-        with you into your own Drive.</p>
+        <p>See exactly who has access to your files, sorted by file count. Export the audit to a Sheet. One-click backup of everything shared with you into your own Drive.</p>
       </div>
     </div>
   </div>
@@ -214,8 +248,7 @@
     <h2>How it works</h2>
     <ol class="steps">
       <li><strong>Install from the Google Workspace Marketplace.</strong>
-      Grants only Drive sharing-permission access — never the content of your
-      files.</li>
+      Grants only Drive sharing-permission access — never the content of your files.</li>
       <li><strong>Use the sidebar in Google Drive.</strong> Three tabs:
       Revoke, Backup, Audit.</li>
       <li><strong>Everything runs in Apps Script under your own account.</strong>
@@ -232,9 +265,7 @@
       metadata. No servers. No analytics. No data transfer. All processing
       happens inside Google Apps Script under your own Google account.
     </p>
-    <p>
-      <a href="/privacy">Read the full privacy policy</a>
-    </p>
+    <p><a href="/privacy">Read the full privacy policy</a></p>
   </div>
 </section>
 
